@@ -178,4 +178,37 @@ def score_word(word):
     return points
 
 def get_highest_word_score(word_list):
-    pass
+
+    scores = {}
+
+    for word in word_list:
+        word = word.upper()
+        if word not in scores:
+            scores[word] = score_word(word)
+
+    highest_score = 0
+    for word_entry in scores:
+        
+        # if scores[word_entry] > highest_score:
+        #     highest_score = scores[word_entry]
+        #     winner = word_entry
+
+        # elif scores[word_entry] == highest_score:
+        #     if len(winner) == 10:
+        #         break
+        #     elif len(word_entry) == 10 or len(word_entry) < len(winner):
+        #         winner = word_entry
+
+        for word_entry in scores:
+        
+            if scores[word_entry] > highest_score:
+                highest_score = scores[word_entry]
+                winner = word_entry
+
+            elif scores[word_entry] == highest_score:
+                if len(winner) == 10:
+                    break
+                elif len(word_entry) == 10 or len(word_entry) < len(winner):
+                    winner = word_entry
+
+    return (winner, scores[winner])
